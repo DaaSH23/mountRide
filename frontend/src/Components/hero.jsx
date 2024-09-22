@@ -14,12 +14,28 @@ export default function Hero() {
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
             const t1 = gsap.timeline();
-            t1.from("#main2", {
-                xPercent: "-100",
+            t1.from("#himg", {
+                xPercent: "20",
                 duration: 1.3,
+                opacity: 0,
+            }).from(["#text1", "#text2"], {
+                opacity: 0,
+                y: "+=30",
+                stagger: 0.5,
+            }).to(["#text1", "#text2"], {
+                opacity: 0,
+                y: "-=30",
                 delay: 0.3,
+                stagger: 0.5,
+            }).from(["#text3", "#text4"], {
+                opacity: 0,
+                y: "+=30",
+                stagger: 0.5,
+            }).from("#buttonSlot", {
+                xPercent: "-10",
+                duration: 1.3,
+                opacity: 0,
             })
-
         }, comp)
 
         return () => ctx.revert()
@@ -29,7 +45,7 @@ export default function Hero() {
         <div className="relative" ref={comp}>
             <div className="w-full h-screen mb-32 " id="main2">
                 <div className="z-10 sm:px-1 lg:px-6">
-                    <div className="flex flex-col mt-6 hover:shadow-2xl hover:shadow-blue-500/70 transition-shadow bg-zinc-950 rounded-3xl overflow-hidden relative ">
+                    <div className="flex flex-col h-screen mt-6 hover:shadow-2xl hover:shadow-blue-500/70 transition-shadow bg-zinc-950 rounded-3xl overflow-hidden relative ">
                         <nav className="flex items-center justify-between pr-10">
                             <div className="flex space-x-10 items-center">
                                 <div className="Clogo"></div>
@@ -41,21 +57,30 @@ export default function Hero() {
                             </div>
                             <div className="SomeButtom md:hidden w-8 h-8 bg-slate-500"></div>
                         </nav>
-                        {/* <div className=""> */}
                         <img
                             src="/src/assets/download__2_-removebg.png"
                             alt="Horse"
-                            className="horseImg transition-transform hover:scale-105 left-2/4 "
+                            className="absolute h-full left-2/4"
+                            id="himg"
                         />
-                        {/* </div> */}
-                        <div className="Heading">
-                            <h1>Experience</h1>
-                            <h1>Freedom</h1>
+                        <div className="relative mt-24 ml-6">
+                            <h1 className="absolute text-gray-100 font-Ramabhadra text-9xl" id="text1">
+                                Welcome
+                            </h1>
+                            <h1 className="absolute text-gray-100 font-Ramabhadra text-7xl top-32" id="text2">
+                                to <span className="text-green-200">MountRide</span>
+                            </h1>
+                            <h1 className=" text-gray-100 font-Ramabhadra text-9xl" id="text3">
+                                Experience
+                            </h1>
+                            <h1 className=" text-gray-100 font-Ramabhadra text-9xl" id="text4">
+                                Freedom
+                            </h1>
                         </div>
 
-                        <div className="BookNowButton flex justify-end mr-8 mt-36">
+                        <div className="absolute ml-80  top-2/3" id="buttonSlot">
                             <Link to={"/Booking"}>
-                                <button className="bg-white rounded-3xl p-3 px-6 font-Ramabhadra flex transition-transform transform hover:scale-105 hover:bg-blue-600 hover:text-white">Book Your Slot<ArrowUpRightIcon className="size-6 ml-1" /></button>
+                                <button className="bg-sky-200 rounded-3xl p-3 px-6 font-Ramabhadra flex transition-transform transform hover:scale-105 hover:bg-blue-600 hover:text-white">Book Your Slot<ArrowUpRightIcon className="size-6 ml-1" /></button>
                             </Link>
                         </div>
 
